@@ -1,9 +1,3 @@
-/**
- * Oblig 2 Algoritmer og datastrukturer høst 2010
- * Hans Petter Naumann, 2ac, s163471
- * Alexander Barve, 2aa, s155517
- */
-
 import java.util.*;
 
 public class DobbeltLenketListe<T> implements Liste<T>
@@ -13,7 +7,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 		private T verdi;
 		private Node<T> forrige, neste;
 
-		private Node(T verdi, Node<T> forrige, Node<T> neste)   // konstruktør
+		private Node(T verdi, Node<T> forrige, Node<T> neste)   // konstruktÃ¸r
 		{
 			this.verdi = verdi;
 			this.forrige = forrige;
@@ -21,7 +15,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 		}
 	}
 
-	private Node<T> hode;         // peker til den første i listen
+	private Node<T> hode;         // peker til den fÃ¸rste i listen
 	private Node<T> hale;         // peker til den siste i listen
 	private int antall;           // antall noder i listen
 	private int modAntall;        // antall modifikasjoner i listen
@@ -65,7 +59,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 			throw new NullPointerException("Verdien er null");
 	}
 
-	public DobbeltLenketListe()  // konstruktør
+	public DobbeltLenketListe()  // konstruktÃ¸r
 	{
 		hode = hale = null;
 		antall = 0;
@@ -153,7 +147,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 		nullSjekk(verdi);
 		
 		
-		if(antall == 0) //Listen er tom fra før
+		if(antall == 0) //Listen er tom fra fÃ¸r
 		{
 			Node<T> ny = new Node<T>(verdi, null, null);
 			
@@ -165,7 +159,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 			return true;
 		}
 		
-		else//Hvis listen ikke er tom fra før
+		else//Hvis listen ikke er tom fra fÃ¸r
 		{
 			Node<T> ny = new Node<T>(verdi, hale.forrige, null);
 			hale.forrige.neste = ny;
@@ -221,7 +215,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 		indeksKontroll(indeks);
 		
 		Node<T> n = finnNode(indeks);
-		if(indeks == 0)//fjerne første element
+		if(indeks == 0)//fjerne fÃ¸rste element
 		{
 			if(antall == 1)
 			{
@@ -275,8 +269,8 @@ public class DobbeltLenketListe<T> implements Liste<T>
 
 		private DobbeltLenketListeIterator()
 		{
-			p = hode.neste;         // p starter på den første i listen
-			fjernOK = false;  // blir sann når next() kalles
+			p = hode.neste;         // p starter pÃ¥ den fÃ¸rste i listen
+			fjernOK = false;  // blir sann nÃ¥r next() kalles
 			iteratorModAntall = modAntall;  // teller endringer
 			erHale = false; //hvis p er halen
 		}
@@ -332,7 +326,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 					hode.neste = null;
 					hale.forrige = null;
 				}
-				else if(p.forrige.forrige == null)//slette første element
+				else if(p.forrige.forrige == null)//slette fÃ¸rste element
 				{
 					p.forrige = null;
 					hode.neste = p;
