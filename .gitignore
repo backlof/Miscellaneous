@@ -38,4 +38,32 @@ $RECYCLE.BIN/
 *.ear
 
 
+### WP7 ###
+_ReSharper*
+Bin/
+obj
+*.csproj.user
+*.ReSharper.user
+*.resharper
+*.suo
+PerformanceLogs
+*.sap
 
+
+### Visual Studio ###
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
