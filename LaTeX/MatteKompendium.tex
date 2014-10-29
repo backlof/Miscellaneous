@@ -1,0 +1,726 @@
+\documentclass[12pt,norsk,a4paper]{article}
+
+\title{Matematikk Kompendium}
+\author{Name}
+
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[norsk,english]{babel}
+\usepackage[norsk]{isodate}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{graphicx}
+
+
+
+\usepackage{parskip}
+
+\usepackage{a4wide}
+\usepackage[top=2cm]{geometry}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\usepackage{polynom}
+
+\polyset{%
+  style=C,
+  delims={\big(}{\big)},
+  div=:
+}
+
+\addto\captionsenglish{%
+  \renewcommand{\contentsname}%
+    {Innhold}%
+}
+
+\definecolor{drkgreen}{rgb}{0,0.6,0}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{language=Matlab, basicstyle=\footnotesize, frame=single, breaklines=true, breakatwhitespace=true, keywordstyle=\color{blue}, commentstyle=\color{drkgreen}, stringstyle=\color{mauve}}
+
+\lstset{,breaklines=true}
+
+\lstset{basicstyle=\scriptsize\ttfamily, frame=single, breaklines=true, breakatwhitespace=true}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Grunnleggende}
+\subsection*{Tall}
+De reelle tallene $\mathbb{R}$ består av
+
+\begin{itemize}
+\item De naturlige tallene $\mathbb{N} = \{ 1,2,3 \textellipsis \}$
+\item De hele tallene $\mathbb{Z} = \{ -1,0,1,2 \textellipsis \}$
+\item De rasjonale tallene $\mathbb{Q} = \{ \frac{a}{b} : a,b \in \mathbb{Z}, b \neq 0 \}$
+\item De irrasjonale tallene $\mathbb{R} - \mathbb{Q}$ som $\pi,\sqrt{2},e$
+\end{itemize}
+
+I tillegg finnes imaginære tall som $\sqrt{-1}$ som har egne regneregler.
+
+\newpage
+
+
+
+
+
+
+
+
+
+\subsection{Regneregler}
+\subsubsection*{Addisjon}
+\begin{align*}
+a + b &= b + a		&	a - a &= 0		&	a + 0 &= a	 	\\
+a+(b+c) &= (a+b)+c	&	a - b &= a+(-b)	&	a-(b+c) &= a-b-c	
+\end{align*}
+
+\subsubsection*{Multiplikasjon}
+\begin{align*}
+ab &= ba		&	a(bc) &= (ab)c	&	a(b + c) &= ab + ac	\\
+a \cdot 1 &= a	&	a \cdot \frac{1}{a} &= 1, \quad a \neq 0 
+\end{align*}
+
+\subsubsection*{Divisjon}
+\begin{align*}
+\frac{a}{c} + \frac{b}{c} &= \frac{a+b}{c}		&	\frac{ac}{bc} &= \frac{a}{b}	&	\frac{a}{c} \cdot \frac{b}{d} &= \frac{ab}{cd}	&	\frac{a}{c} \div \frac{b}{d} &= \frac{a}{c} \cdot \frac{d}{b}
+\end{align*}
+
+\begin{align*}
+\frac{a}{c} + \frac{b}{d} = \frac{ad}{cd} + \frac{bc}{dc} = \frac{ad + bc}{cd}
+\end{align*}
+
+\subsubsection*{Potenser}
+\begin{align*}
+a^{1} &= a						&	a^{0} &= 1	&	a^{-n} &= \frac{1}{a^{n}}, \quad a \neq 0	\\
+\sqrt[n]{a} &= a^{\frac{1}{n}}	&	\sqrt{a+b} &\neq \sqrt{a} + \sqrt{b}
+\end{align*}
+
+\begin{align*}
+a^{n} \cdot a^{m} &= a^{n+m}	&	\frac{a^{n}}{a^{m}} &= a^{n-m}				&	(a^{n})^{m} &= a^{(n \cdot m)}	\\
+a^{n} \cdot b^{n} &= (ab)^{n}	&	\frac{a^{n}}{b^{n}} &= (\frac{a}{b})^{n}
+\end{align*}
+
+\subsubsection*{Store tall}
+\begin{align*}
+7000 &= 7 \cdot 10^{3}	&	0,72 &= 7,2 \cdot 10^{-1}
+\end{align*}
+
+\subsubsection*{Logaritmer}
+Logaritmer brukes for å finne ut hvor mange ganger basen må ganges med seg selv for å bli et tall. For naturlige logaritmer er det for eksempel snakk om hvor mange ganger tallet $e = 2.71828182 \textellipsis$ må ganges med seg selv.
+
+\begin{equation}
+8 = 2 \cdot 2 \cdot 2 = 2^{3}	\quad	\rightarrow	\quad	\log_2 (8) = 3 
+\end{equation}
+
+\begin{equation}
+\log_e (10) = \ln (10)
+\end{equation}
+
+Den vanlige basen for benevnelsen $\log$ er 10.
+
+\begin{equation}
+\log(10) = 1	\quad	\rightarrow	\quad	10^{1} = 10
+\end{equation}
+
+Husk at $x^0 = 1$ så lenge $x > 0$, dermed er $\log (1) = 0$ for alle baser.
+
+\begin{align*}
+\ln(1)&= 0	&	\ln (a^{b}) &= b \ln a		&	\ln (ab) &= \ln a + \ln b	&	\ln (\frac{a}{b}) &= \ln a - \ln b		\\
+e^{\ln (a^{b})} &= a^{b}	&	e^{b \cdot \ln a} &= a^{b}	&	e^{\ln (ab)} &= ab		&	e^{(\ln a + \ln b)} &= ab
+\end{align*}
+
+\paragraph*{Eksempel} Hvor mange ganger må $e$ ganges seg selv for å bli 10?
+\begin{align*}
+e^{x} &= 10				\\
+\ln (e^{x}) &= \ln (10)	\\
+x &= \ln (10) = 2.30258509 \textellipsis
+\end{align*}
+
+\newpage
+
+
+
+
+
+
+
+
+
+\subsection{Likninger}
+\subsubsection{Annengradslikninger}
+\begin{equation}
+ax^{2} + bx + c = 0 , \quad a,b,c \in \mathbb{R} , \quad a \neq 0
+\end{equation}
+
+På diskriminanten $b^{2} - 4ac$ kan vi se hvor mange løsninger det er på svaret:
+
+\begin{itemize}
+\item[$= 0$]En løsning
+\item[$> 0$]To løsninger
+\item[$< 0$]Komplekse tall - ingen løsning\\
+\end{itemize}
+
+Noen ganger får man 2 reelle løsninger, men bare 1 av dem fungerer i praksis.
+
+\textbf{Løsning 1}
+\begin{equation}
+x = \frac{-b \pm \sqrt{b^{2} -4ac} }{2a}
+\end{equation}
+
+\textbf{Løsning 2}
+\begin{align*}
+x^{2} - 2x &= 0	\\
+x(x - 2) &= 0	\\
+x = 0 \quad &\cup \quad x = 2
+\end{align*}
+
+\subsubsection{Rasjonale likninger}
+Rasjonale likninger er likninger som inneholder rasjonale uttrykk.
+
+\paragraph*{Eksempel} Løs likningen $\frac{3}{x - 1} = \frac{6}{x}, \quad x \neq \{ 0,1 \}$
+\begin{align*}
+\frac{3x(x-1)}{x-1} &= \frac{6x(x-1)}{x}				\\
+3x &= 6(x - 1)											\\
+-3x &= -6												\\
+x &= 2
+\end{align*}
+
+\newpage
+
+
+
+
+
+
+
+
+\subsubsection{Irrasjonale likninger}
+Disse likningene kan man løse ved å:
+
+\begin{enumerate}
+\item Få alle rotuttrykkene alene på venstre side
+\item Kvadrer på begge sider
+\item Rydd og løs
+\item Prøv svarene
+\end{enumerate}
+
+\paragraph*{Eksempel} Løs likningen $\sqrt{x} = 12 - x$
+\begin{align*}
+(\sqrt{x})^{2} &= (12 - x)^{2}	\\
+x &= 144 - 24x + x^{2}			\\
+x = 16 \quad &\cup \quad x = 9
+\end{align*}
+
+\subsubsection{Polynomdivisjon}
+Polynomdivisjon brukes til å faktorisere uttrykk av høyere grad enn 2.
+
+\[  \polylongdiv{x^3-6x^2+11x-6}{x-1}  \]
+
+Det første man må gjøre ved polynomdivisjon er å finne noe det opprinnelige uttrykket kan deles på. I dette tilfellet vil det passe med $(x - 1)$ siden det er negative polynomer i uttrykket. Deretter fjerner vi polynomer fra uttrykket med denne formelen:
+
+\begin{enumerate}
+\item Hva må $x$ ganges med for å få $x^3$
+\item Legg til tallet ($x^2$) etter likhetstegnet
+\item Trekk fra $x^2(x - 1)$ (for å se hva som er igjen å faktorisere)
+\item Neste polynom
+\end{enumerate}
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+\section{Derivasjon}
+Derivasjon er en operasjon der en bestemmer den deriverte av en funksjon. For en funksjon av én variabel $f(x)$ er den deriverte definert ved
+
+\begin{equation}
+ f'(x) = \frac{d}{dx}(f(x)) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+\end{equation}
+
+dersom grenseverdien eksisterer. Den deriverte er et mål for endringen i $f(x)$ når den frie variabelen $x$ endres, altså et uttrykk for \textit{stigningstallet}.
+
+\subsection*{Regler}
+\begin{align*}
+C' &= 0							&	(x^{n})' &= n \cdot x^{(n-1)}	&	(a \cdot f(x))' &= a \cdot f'(x)	\\
+(e^{x})' &= e^{x}				&	(a^{x})' &= a^{x} \cdot \ln x	&	(\ln x)' &= \frac{1}{x}				\\
+(\sin x)' &= \cos x				&	(\cos x)' &= - \sin x			&	(\tan x)' &= \frac{1}{cos^{2} x}	\\
+(\sin^{-1} x) ' &= \frac{1}{\sqrt{1 - x^{2}}}	&	(\cos^{-1} x) ' &= \frac{1}{\sqrt{1 - x^{2}}}	&	(\tan^{-1} x) ' &= \frac{1}{1 - x^{2}}
+\end{align*}
+
+Husk at $\sqrt{x} = x^{\frac{1}{2}}$ og dermed er $(\sqrt[m]{x^{n}})' = (x^{\frac{n}{m}})' = \frac{n}{m} \cdot x ^{(\frac{n}{m} - 1)}  $
+
+\subsubsection*{Polynom}
+\begin{equation}
+(f(x) + g(x))' = f'(x) + g'(x)
+\end{equation}
+
+\subsubsection*{Produktregelen}
+\begin{equation}
+(f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)
+\end{equation}
+
+\paragraph*{Eksempel} Deriver $2x \cdot e^{x}$
+\begin{align*}
+f(x) &= 2x		&	g(x) &= e^{x}		\\
+f'(x) &= 2 \cdot (\frac{d}{dx}(x)) = 2 \cdot 1 = 2 		&	g'(x) &= e^{x}
+\end{align*}
+
+\begin{equation*}
+(2x \cdot e^{x})' = 2 \cdot e^{x} + 2x \cdot e^{x} = e^{x} (2 + 2x)
+\end{equation*}
+
+\subsubsection*{Kvotientregelen}
+\begin{equation}
+(\frac{g(x)}{h(x)})' = \frac{g'(x) \cdot h(x) - g(x) \cdot h'(x)}{(h(x))^{2}}
+\end{equation}
+
+\newpage
+
+\subsection{Taylorrekker}
+En taylorrekke er en representasjon av en funksjon som en rekke, der leddene er definert ved hjelp av den deriverte av funksjonen. Disse blir benyttet for å finne en tilnærming av funksjonen.
+
+\begin{equation}
+\sum\limits_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^{n} 
+\end{equation}
+
+\begin{equation}
+f(a) + \frac{f'(a)}{1!}(x - a) + \frac{f''(a)}{2!}(x - a)^{2} + \frac{f^{(3)}(a)}{3!}(x - a)^{3} \textellipsis
+\end{equation}
+
+\paragraph*{Eksempel} Bruk et 2. ordens Taylorpolynom til å estimere $\sqrt{101}$
+
+\begin{align*}
+f(x) = \sqrt{x}, \quad a = 100
+\end{align*}
+
+\begin{align*}
+f(100) &= \sqrt{100} = 10	\\
+f'(x) &= \frac{1}{2\sqrt{x}} = \frac{1}{2}x^{-\frac{1}{2}}	&	f'(100) &= \frac{1}{2\sqrt{100}} = \frac{1}{20}	\\
+f''(x) &= - \frac{1}{4}x^{- \frac{3}{2}} = - \frac{1}{4(\sqrt{x})^{3}}	&	f''(100) &= - \frac{1}{4 \cdot 10^3} = - \frac{1}{4000}
+\end{align*}
+
+\begin{align*}
+P_{2}(x) &= f(100) + f'(100)(x - 100) + \frac{1}{2} f''(100)(x-100)^2	\\
+&= 10 + \frac{1}{20} \cdot (x - 100) - \frac{1}{8000}(x - 100)^2	\\
+f(101) \approx P_{2}(101) &= 10 + \frac{1}{20} \cdot (101 - 100) - \frac{1}{8000}(101 - 100)^2 = \frac{80399}{8000}
+\end{align*}
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Integrasjon}
+
+\subsection*{Regler}
+\begin{align*}
+\int k dx &=	kx + C		&		\int x^{r} dx &= \frac{1}{1+r} \cdot x^{r+1} + C, \quad r \neq -1		\\
+\int e^{x} dx &= e^{x} + C		&		\int e^{kx} dx &= \frac{1}{k} \cdot e^{kx} + C	\\
+\int a^{x} dx &= \frac{1}{\ln a} \cdot a^{x} + C	&	\int a^{kx} dx &= \frac{1}{k \cdot \ln a} \cdot a^{kx} + C	\\
+\int \frac{1}{x} dx &= \ln x + C, \quad x \neq 0	&	\int \ln x dx &= x \cdot \ln x - x + C
+\end{align*}
+\subsubsection*{Trigonometri}
+\begin{align*}
+\int \cos x dx &= \sin x + C	&	\int \sin x dx &= - \cos x + C	\\
+\int \tan x dx &= - \ln ( \cos x) + C	&	\int \tan ^{2} x dx &= \tan x - x + C	\\
+\int \frac{1}{\sqrt{1 - x^{2}}} dx &= \sin^{-1}x + C	&	\int \frac{1}{1 + x^{2}} dx &= \tan^{-1} x + C	\\
+\int \frac{1}{\cos^{2} x} dx &= \tan x + C
+\end{align*}
+
+\subsection{Ubestemte integraler}
+
+\subsubsection*{Polynom}
+\begin{equation}
+\int f(x) + g(x) dx = \int f(x) dx + \int g(x) dx + C
+\end{equation}
+
+\subsubsection*{Faktoriseringsregelen}
+\begin{equation}
+\int k \cdot f(x) dx = k \cdot \int f(x) dx + C
+\end{equation}
+
+\subsubsection*{Delvis integrasjon}
+\begin{equation}
+\int f(x) \cdot g'(x) dx = f(x) \cdot g(x) - \int f'(x) \cdot g(x) dx + C
+\end{equation}
+
+%*Trenger ett eksempel*
+
+\subsubsection*{Substitusjon}
+\begin{equation}
+\int f(u(x)) \cdot u'(x) dx = \int f(u) du + C
+\end{equation}
+
+%*Trenger ett eksempel*
+
+\subsection{Bestemte integraler}
+Hvis $f(x)$ er kontinuerlig og $F'(x)=f(x)$ er
+\begin{equation}
+\int_a^b f(x) dx = [ F(x) ]_a^b = F(b) - F(a)
+\end{equation}
+
+Vi kan bytte om på grensene slik
+\begin{equation}
+\int_a^b f(x) dx = - \int_b^a f(x) dx
+\end{equation}
+
+\subsubsection*{Substitusjon}
+\begin{equation}
+\int_a^b f(u(x)) \cdot u'(x) dx = \int_{u(a)}^{u(b)} f(u) du
+\end{equation}
+
+\newpage
+\section{Differensiallikninger}
+Vi bruker differensiallikninger for å finne ukjente funksjoner, som regel $y(x)$. I likningen inngår $y'(x)$ eller en høyere ordens derivert. Hvis man får en initialbetingelse, f.eks $y(0) = 5$, kan vi finne $C$.
+
+\paragraph*{Eksempel} Bestem $y(x)$ når $y'(x) = 2x + \sin x$ og $y(0) = 3$
+\begin{equation*}
+y(x) = \int (2x + \sin x) dx = x^2 - \cos x + C
+\end{equation*}
+\begin{align*}
+0^2 + \cos 0 + C &= 3	\\
+-1 + C &= 3				\\
+C &= 4
+\end{align*}
+\begin{align*}
+y(x) = x^2 - \cos x + 4
+\end{align*}
+
+\subsection{Lineære}
+Det som kjennetegner disse likningene er at de kan skrives på formen:
+
+\begin{equation}
+y' + p(x) \cdot y = q(x)
+\end{equation}
+
+\paragraph*{Eksempel} Finn $y(x)$ for $2y' = 12 + 4y$
+\begin{align*}
+2y' &= 12 + 4y	\\
+y' - 2y &= 6
+\end{align*}
+
+Vi ganger alle ledd med $e$ opphøyd i integralet til faktoren før $y$, $p(x)$.
+
+\begin{align*}
+\int p(x) dx = \int -2 dx = -2x + C
+\end{align*}
+
+Vi gjør dette fordi venstresiden nå følger kjerneregelen, og vi kan dermed integrere.
+
+\begin{align*}
+y' \cdot e^{-2x} - 2y \cdot e^{-2x} &= 6 \cdot e^{-2x}	\\
+(y \cdot e^{-2x})' &= 6 \cdot e^{-2x}					\\
+y \cdot e^{-2x} &= \int 6 \cdot e^{-2x} dx
+\end{align*}
+
+Hvis $q(x) = 0$ sier vi at likningen er \textbf{homogen}.
+
+\newpage
+
+\subsection{Separable}
+Det som kjennetegner separable differensiallikninger er at $y$'ene og $x$'ene kan separeres på hver side av likningene.
+
+\begin{equation}
+g(y) \cdot y' = h(x)
+\end{equation}
+
+\paragraph*{Eksempel} Finn $y(x)$ for $\frac{y}{3} \cdot y' = x^2 + x$
+\begin{align*}
+\frac{y}{3} \cdot y' = x^2 + x
+\end{align*}
+
+Vi skriver at $y' = \frac{dy}{dx}$ og får
+
+\begin{align*}
+\int \frac{y}{3} \cdot \frac{dy}{dx} dx &= \int (x^2 + x)dx	\\
+\int \frac{y}{3} dy &= \int (x^2 + x)dx
+\end{align*}
+
+Nå kan man løse differensiallikningen ved å utføre integrasjonene på hver side.
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Lineære algebra}
+En lineær likning består av \textit{koeffisienter}, \textit{variabler} og ett \textit{konstantledd}.
+
+\begin{equation*}
+3x + 4y = 1
+\end{equation*}
+
+Målet med lineær algebra er å
+
+\begin{itemize}
+\item løse likninger
+\item løse likningssystemer
+\end{itemize}
+
+\subsection{Likningssystemer}
+
+\begin{equation*}
+\begin{alignedat}{10}
+	&x_{1}	&+	&	2	&x_{2}	&-	&	3	&x_{3}	&	\quad	&=	\quad	&		&1	\\
+2	&x_{1}	&-	&		&x_{2}	&+	&		&x_{3}	&	\quad	&=	\quad	&		&2	\\
+-	&x_{1}	&+	&		&x_{2}	&-	&	5	&x_{3}	&	\quad	&=	\quad	&	-	&1
+\end{alignedat}
+\end{equation*}
+
+Vi kan ofte se på et likningssystem hvordan det lar seg løse på forhånd. Likningssystemer med
+
+\begin{itemize}
+\item Færre likninger enn ukjente vil ha uendelig mange løsninger eller ingen.
+\item Like mange likninger som ukjente vil som regel ha en løsning.
+\item Flere likninger enn ukjente vil som regel ha ingen løsning.
+\end{itemize}
+
+Et likningssystem med flere likninger enn ukjente er nødt til å ha lineært uavhengige likninger for å kunne løses. For at et likningsystem skal ha en løsning må det være like mange lineært uavhengige likninger som ukjente. I tillegg kan man også finne likningssystemer som ikke lar seg løse fordi likningene motsier hverandre:
+
+\begin{equation*}
+\begin{alignedat}{5}
+2x	&+	&		&	&y	&=	3	\\
+4x	&+	&	2	&	&y	&=	4
+\end{alignedat}
+\end{equation*}
+
+Her ser du et eksempel på en løsning med uendelig mange løsninger.
+\begin{align*}
+x + y &=5	&	(x,y) &= (t, 5-t)
+\end{align*}
+
+\newpage
+
+\subsection{Matriser}
+\subsubsection*{Regneregler}
+For en matrise $A$ med dimensjoner $m \times n$
+\begin{align*}
+A+B &= B+A	&	A \cdot B &\neq B \cdot A	&	A(BC) &= (AB)C	&	\frac{A}{B} &= A \cdot B^{-1}	\\
+B \cdot B^{-1} &= I_{n}	&	A \cdot I_{n} &=  A		&	I_{m} \cdot A &= A	&	(A^{T})^{T} &= A
+\end{align*}
+
+\subsubsection*{Identitetsmatrisen}
+\begin{align*}
+I_{2} = 
+\begin{pmatrix}
+1	&	0	\\
+0	&	1
+\end{pmatrix}
+\end{align*}
+
+\subsubsection*{Addisjon og substraksjon}
+\begin{align*}
+\begin{pmatrix}
+1	&	2	\\
+3	&	4	\\
+5	&	6
+\end{pmatrix}
++
+\begin{pmatrix}
+a	&	b	\\
+c	&	d	\\
+e	&	f
+\end{pmatrix}
+&=
+\begin{pmatrix}
+a	&	2b	\\
+3c	&	4d	\\
+5e	&	6f
+\end{pmatrix}\\
+(m \times n) + (m \times n) &= (m \times n)
+\end{align*}
+
+Begge matrisene må ha samme dimensjoner for å addere og subtrahere to matriser.
+
+\subsubsection*{Multiplikasjon}
+\begin{align*}
+\begin{pmatrix}
+a	&	b	&	c	\\
+d	&	e	&	f	\\
+g	&	h	&	i	\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+1	&	4	\\
+2	&	5	\\
+3	&	6	\\
+\end{pmatrix}
+&=
+\begin{pmatrix}
+a + 2b + 3c	&	4a + 5b + 6c	\\
+d + 2e + 3f	&	4d + 5e + 6f	\\
+g + 2h + 3i	&	4g + 5h + 6i
+\end{pmatrix}	\\
+(m \times n) \cdot (n \times p) &= (m \times p)
+\end{align*}
+
+For $A \cdot B$ må $A$ ha like mange kolonner som $B$ har rader. Resultanten vil da ha like mange rader som $A$ og kolonner som $B$.
+
+\subsubsection*{Transponering}
+\begin{align*}
+\begin{pmatrix}
+6	&	4	&	24	\\
+1	&	-9	&	8
+\end{pmatrix}^{T}
+=
+\begin{pmatrix}
+6	&	1	\\
+4	&	-9	\\
+24	&	8
+\end{pmatrix}
+\end{align*}
+
+\newpage
+
+\subsubsection{Invers}
+Hvis det finnes en matrise $B$ slik at $AB = BA = I_{n}$, da er $B$ inversmatrisen til $A$, $A^{-1}$. For å finne inversmatrisen $A^{-1}$ gjør man rekkeredusering av $A|I$ helt til man får flyttet identitetsmatrisen over på venstre side.
+\begin{align*}
+\begin{pmatrix}
+a	&	b	&	1	&	0	\\
+c	&	d	&	0	&	1
+\end{pmatrix}
+\rightarrow
+\begin{pmatrix}
+1	&	0	&	x	&	x	\\
+0	&	1	&	x	&	x
+\end{pmatrix}
+\end{align*}
+
+Hvis $A \cdot A^{-1} = I_{n}$ er den riktig.
+
+\subsubsection{Determinant}
+\begin{align*}
+\det A =
+\begin{vmatrix}
+a	&	b	\\
+c	&	d
+\end{vmatrix}
+= ad - bc
+\end{align*}
+
+\begin{align*}
+\begin{vmatrix}
+a	&	b	&	c	\\
+1	&	2	&	3	\\
+4	&	5	&	6
+\end{vmatrix}
+=
+a \cdot 
+\begin{vmatrix}
+2	&	3	\\
+5	&	6
+\end{vmatrix}
+- b \cdot
+\begin{vmatrix}
+1	&	3	\\
+4	&	6
+\end{vmatrix}
++ c \cdot
+\begin{vmatrix}
+1	&	2	\\
+4	&	5
+\end{vmatrix}
+\end{align*}
+
+\subsubsection{Egenverdier}
+Hvis det finnes en vektor $\vec{v} \in \mathbb{R}^{n} \neq 0$, slik at $A \vec{v} = \lambda \vec{v}$, så er $\lambda$ egenverdien til $A$. Vi kan bruke det karakteristiske polynomet $\det(A - I\lambda)$ for å finne egenverdien $\lambda$. Ved å regne ut 
+
+\subsubsection{Egenvektorer}
+Vi kan finne egenvektorene til matrisen $A$ ved å regne ut likningssystemet $\vec{v} \cdot \vec{x} = \vec{0}$ for hver egenverdi.
+
+\subsubsection{Eksponensiell}
+Vi kan finne $A^{n}$ for matrisen $A$ med uttrykket $A_{n}=PD^{n}P^{-1}$ der $P$ er egenvektorene og $D$ er egenverdiene diagonalt.
+
+
+
+
+
+\newpage
+\section{Komplekse tall}
+Komplekse tall skrives på formen $z = x + iy$, der $i$ er et imaginært tall.
+\begin{align*}
+i &= \sqrt{-1}	&	i^2 &= -1	&	i^3 &= i^2 \cdot i = -1 \cdot i = -i	&	i^4 &= i^2 \cdot i^2 = -1 \cdot -1 = 1
+\end{align*}
+
+\paragraph*{Eksempel}
+Regn ut $z_{1} \cdot z_{2}$ der $z_{1} = 1 + 3i$ og $z_{2} = 2 - i$
+
+\begin{align*}
+z_{1} \cdot z_{2} &= (1 + 3i) \cdot (2 - i)	\\
+&= 2 - i + 6i - 3i^2	\\
+&= 2 + 5i -3 \cdot (-1)	\\
+&= 5 + 5i
+\end{align*}
+
+\paragraph*{Eksempel}
+Regn ut $\frac{z_{1}}{z_{2}}$ der $z_{1} = 2-3i$ og $z_{2} = 3+i$
+
+\begin{align*}
+\frac{z_{1}}{z_{2}}	=	\frac{2 - 3i}{3 + i}	=	\frac{(2 - 3i) \cdot (3 - i)}{(3 + i) \cdot (3-i)}	=	\frac{6 - 2i - 9i + 3i^2}{9 - i^2}	=	\frac{3}{10} - \frac{11}{10}i
+\end{align*}
+
+\paragraph*{Eksempel}
+Løs likningen $2z + 3 -3i = \bar{z} - 3z - 1 + 3i$
+
+\begin{align*}
+2z + 3 -3i &= \bar{z} - 3z - 1 + 3i	\\
+5z - \bar{z} &= -4 + 6i
+\end{align*}
+
+Så setter vi inn $z = x + iy$ og $\bar{z} = x - iy$
+
+\begin{align*}
+5(x + iy) - (x -iy) &= -4 + 6i	\\
+5x + 5iy - x + iy &= -4 + 6i	\\
+4x + 6iy &= -4 + 6i
+\end{align*}
+
+\begin{align*}
+&	\text{Realdelen}		&	4x &= -4	&	&\rightarrow	&	x &= -1	\\
+&	\text{Imaginærdelen}	&	6iy &= 6i	&	&\rightarrow	&	y &= 1
+\end{align*}
+
+\begin{align*}
+z = x + iy = -1 + i
+\end{align*}
+
+
+
+
+
+
+\end{document}
