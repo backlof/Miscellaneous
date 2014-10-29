@@ -1,10 +1,3 @@
-/**
- * Oblig 3 Algoritmer og datastrukturer høsten 2010
- * Vegard Nyeng, 2IA, s163302
- * Hans Petter Naumann, 2AC, s163471
- * Alexander Barve, 2AA, s155517
- * Peter Marcinkowski, 2AB, s154390
- */
 import java.util.*;
 
 public class SBinTre<T> implements Iterable<T>
@@ -13,16 +6,16 @@ public class SBinTre<T> implements Iterable<T>
 	{
 		private T verdi;          //nodens verdi
 		private Node<T> venstre;  //venstre barn
-		private Node<T> høyre;    //høyre barn
+		private Node<T> hÃ¸yre;    //hÃ¸yre barn
 
-		private Node(T verdi, Node<T> v, Node<T> h)  //konstruktør
+		private Node(T verdi, Node<T> v, Node<T> h)  //konstruktÃ¸r
 		{
 			this.verdi = verdi;
 			venstre = v;
-			høyre = h;
+			hÃ¸yre = h;
 		}
 
-		private Node(T verdi)  //konstruktør
+		private Node(T verdi)  //konstruktÃ¸r
 		{
 			this(verdi, null, null);
 		}
@@ -37,7 +30,7 @@ public class SBinTre<T> implements Iterable<T>
 
 	//hjelpemetoder
 
-	private static <T> Node<T> først(Node<T> p)
+	private static <T> Node<T> fÃ¸rst(Node<T> p)
 	{
 
 		while(p.venstre != null)
@@ -49,17 +42,17 @@ public class SBinTre<T> implements Iterable<T>
 
 	private static <T> Node<T> sist(Node<T> p)
 	{
-	  		while(p.høyre != null)
+	  		while(p.hÃ¸yre != null)
 	  		{
-	  			p = p.høyre;
+	  			p = p.hÃ¸yre;
 	  		}
 	  		return p;
 	}
 
 	private Node<T> neste(Node<T> denne)
 	{
-		if(denne.høyre != null)
-			return først(denne.høyre);
+		if(denne.hÃ¸yre != null)
+			return fÃ¸rst(denne.hÃ¸yre);
 		
 		Node<T> p = rot, q = null;
 		while ( sist(p) != denne ) 
@@ -72,7 +65,7 @@ public class SBinTre<T> implements Iterable<T>
 				p = p.venstre;
 			}
 			else	
-				p = p.høyre;
+				p = p.hÃ¸yre;
 		}
 		return q;
 	}
@@ -80,7 +73,7 @@ public class SBinTre<T> implements Iterable<T>
 	/* VEGARD
 	private Node<T> forrige(Node<T> denne)
 	{
-		Node<T> sjekk = først(rot);
+		Node<T> sjekk = fÃ¸rst(rot);
 		
 		if(sjekk == denne)
 			return null;
@@ -104,7 +97,7 @@ public class SBinTre<T> implements Iterable<T>
 		Node<T> temp = null;
 		int cmp = 0;
 
-		while(først(q) != p) // nullPointerException?
+		while(fÃ¸rst(q) != p) // nullPointerException?
 		{
 			cmp = comp.compare(p.verdi, q.verdi);
 			if(cmp < 0)
@@ -112,7 +105,7 @@ public class SBinTre<T> implements Iterable<T>
 			else
 			{
 				temp = q;
-				q = q.høyre;
+				q = q.hÃ¸yre;
 			}
 		}
 		return temp; // ferdig+testet kode
@@ -130,11 +123,11 @@ public class SBinTre<T> implements Iterable<T>
 			if(cmp < 0)
 			{
 				q = p;
-				p = p.venstre;                  //går til venstre
+				p = p.venstre;                  //gÃ¥r til venstre
 			}
 			else if(cmp > 0)
 			{
-				p = p.høyre;
+				p = p.hÃ¸yre;
 			}
 			else return p;
 		}
@@ -142,7 +135,7 @@ public class SBinTre<T> implements Iterable<T>
 	}
 
 
-	//konstruktører m.m.
+	//konstruktÃ¸rer m.m.
 
 	public SBinTre(Comparator<? super T> c)
 	{
@@ -155,7 +148,7 @@ public class SBinTre<T> implements Iterable<T>
 		comp = c;
 	}
 
-	//klassen Komparator må være tilgjengelig
+	//klassen Komparator mÃ¥ vÃ¦re tilgjengelig
 	public static <T extends Comparable<? super T>> SBinTre<T> lagTre()
 	{
 		return new SBinTre<T>(Komparator.<T> naturlig());
@@ -185,7 +178,7 @@ public class SBinTre<T> implements Iterable<T>
 			q = p;                                 //q forelder til p
 
 			cmp = comp.compare(verdi,p.verdi);     //bruker komparatoren
-			p = cmp < 0 ? p.venstre : p.høyre;     //flytter p
+			p = cmp < 0 ? p.venstre : p.hÃ¸yre;     //flytter p
 		}
 
 		p = new Node<T>(verdi);                  //oppretter en ny node
@@ -195,9 +188,9 @@ public class SBinTre<T> implements Iterable<T>
 		else if(cmp < 0)
 			q.venstre = p;         //til venstre for q
 		else
-			q.høyre = p;                        //til høyre for q
+			q.hÃ¸yre = p;                        //til hÃ¸yre for q
 
-		antall++;                                //én verdi mer i treet
+		antall++;                                //Ã©n verdi mer i treet
 		modAntall++;
 	}
 
@@ -208,13 +201,13 @@ public class SBinTre<T> implements Iterable<T>
 	    {
 			int cmp = comp.compare(verdi,p.verdi);       //sammenligner
 			if(cmp < 0)
-				p = p.venstre;                  //går til venstre
+				p = p.venstre;                  //gÃ¥r til venstre
 			else if(cmp > 0)
-				p = p.høyre;               //går til høyre
+				p = p.hÃ¸yre;               //gÃ¥r til hÃ¸yre
 			else
 			{
 				antall++;
-				p = p.høyre;
+				p = p.hÃ¸yre;
 			}
 	    }
 	    return antall;
@@ -224,10 +217,10 @@ public class SBinTre<T> implements Iterable<T>
 	{
 		if(rot != null)
 		{
-			Node<T> mid = først(rot);
+			Node<T> mid = fÃ¸rst(rot);
 			while(mid != null)
 			{
-				oppgave.utførOppgave(mid.verdi);
+				oppgave.utfÃ¸rOppgave(mid.verdi);
 				mid = neste(mid);
 			}
 		}	
@@ -241,7 +234,7 @@ public class SBinTre<T> implements Iterable<T>
 		   
 			while (p != null) 
 			{
-				oppgave.utførOppgave(p.verdi);
+				oppgave.utfÃ¸rOppgave(p.verdi);
 			    p = forrige(p);
 			}
 		}  
@@ -255,11 +248,11 @@ public class SBinTre<T> implements Iterable<T>
 
 	private static <T> void traverserPreorden(Node<T> p, Oppgave<? super T> oppgave)
 	{
-		oppgave.utførOppgave(p.verdi);
+		oppgave.utfÃ¸rOppgave(p.verdi);
 		if(p.venstre != null)
 			traverserPreorden(p.venstre, oppgave);
-		if(p.høyre != null)
-			traverserPreorden(p.høyre, oppgave);
+		if(p.hÃ¸yre != null)
+			traverserPreorden(p.hÃ¸yre, oppgave);
 	}
 
 	public T min()
@@ -267,7 +260,7 @@ public class SBinTre<T> implements Iterable<T>
 		if(tom())
 			throw new NoSuchElementException("Treet er tomt");
 
-		Node<T> min = først(rot);
+		Node<T> min = fÃ¸rst(rot);
 		return min.verdi;
 	}
 
@@ -295,7 +288,7 @@ public class SBinTre<T> implements Iterable<T>
 		if(verdi == null)
 			return false;
 
-		Node<T> p = rot, q = null;  //q skal være forelder til p
+		Node<T> p = rot, q = null;  //q skal vÃ¦re forelder til p
 
 		while(p != null)     //leter etter verdi
 		{
@@ -308,16 +301,16 @@ public class SBinTre<T> implements Iterable<T>
 			else if(cmp > 0)
 			{
 				q = p;
-				p = p.høyre;
+				p = p.hÃ¸yre;
 			}
-			else break;    //den søkte verdien ligger i p
+			else break;    //den sÃ¸kte verdien ligger i p
 		}
 		if(p == null)
 			return false;   //fant ikke verdi
 
-		if(p.venstre != null && p.høyre != null)  //p har to barn
+		if(p.venstre != null && p.hÃ¸yre != null)  //p har to barn
 		{
-			Node<T> r = p, s = p.høyre;   //finner neste i inorden
+			Node<T> r = p, s = p.hÃ¸yre;   //finner neste i inorden
 			while(s.venstre != null)
 			{
 				r = s;    //r er forelder til s
@@ -325,31 +318,31 @@ public class SBinTre<T> implements Iterable<T>
 			}
 			p.verdi = s.verdi;   //kopierer fra s til p
 			if(r == p)
-				r.høyre = s.høyre;
+				r.hÃ¸yre = s.hÃ¸yre;
 			else
-				r.venstre = s.høyre;
+				r.venstre = s.hÃ¸yre;
 		}
 		else  //p har ett eller ingen barn
 		{
-			Node<T> x = p.høyre == null ? p.venstre : p.høyre;
+			Node<T> x = p.hÃ¸yre == null ? p.venstre : p.hÃ¸yre;
 			if(p == rot)
 				rot = x;
 			else if(p == q.venstre)
 				q.venstre = x;
 			else
-				q.høyre = x;
+				q.hÃ¸yre = x;
 		}
-		antall--;   //det er nå én node mindre i treet
+		antall--;   //det er nÃ¥ Ã©n node mindre i treet
 		modAntall++;
 
 		return true;
 	}
 	
-	public Liste<T> intervallsøk(T fraverdi, T tilverdi)
+	public Liste<T> intervallsÃ¸k(T fraverdi, T tilverdi)
 	{
 		int cmp = comp.compare(fraverdi, tilverdi);
 		if(cmp > 0)
-			throw new IndexOutOfBoundsException("fraverdi (" +fraverdi +") må være mindre enn eller lik tilverdi (" +tilverdi +").");
+			throw new IndexOutOfBoundsException("fraverdi (" +fraverdi +") mÃ¥ vÃ¦re mindre enn eller lik tilverdi (" +tilverdi +").");
 	  
 		DobbeltLenketListe<T> liste = new DobbeltLenketListe<T>();
 		Node<T> q = finnNode(fraverdi);
@@ -398,8 +391,8 @@ public class SBinTre<T> implements Iterable<T>
 		s.append(',');
 		s.append(' ');
 	   
-		if(p.høyre != null) 
-			rekursivtoString(p.høyre, q, s);
+		if(p.hÃ¸yre != null) 
+			rekursivtoString(p.hÃ¸yre, q, s);
 	}
 	
 	public String omvendtString()
@@ -407,7 +400,7 @@ public class SBinTre<T> implements Iterable<T>
 		StringBuilder s = new StringBuilder();
 		if(rot != null)
 		{
-			Node<T> q = først(rot);
+			Node<T> q = fÃ¸rst(rot);
 			rekursivOmvendtString(rot, q, s);
 		}   
 		return "[" +s.toString() +"]";
@@ -415,8 +408,8 @@ public class SBinTre<T> implements Iterable<T>
 	
 	private void rekursivOmvendtString(Node<T> p, Node<T> q, StringBuilder s)
 	{
-		if(p.høyre !=null) 
-			rekursivOmvendtString(p.høyre, q, s);
+		if(p.hÃ¸yre !=null) 
+			rekursivOmvendtString(p.hÃ¸yre, q, s);
 			      
 		s.append(p.verdi);
 		if(q == p)
@@ -441,12 +434,12 @@ public class SBinTre<T> implements Iterable<T>
 	    private int iteratorModAntall;
 	    private boolean fjernOK;
 
-	    private InordenIterator()  // konstruktør
+	    private InordenIterator()  // konstruktÃ¸r
 	    {
 	    	iteratorModAntall = modAntall;
 	    	fjernOK = false;
 	    	if(rot != null)
-	    		denne = først(rot);
+	    		denne = fÃ¸rst(rot);
 	    	else denne = null;
 	    }
 
